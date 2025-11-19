@@ -2,6 +2,8 @@ package com.example.bibliotecaproyecto.paginas;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class controladorpaginas {
@@ -29,6 +31,34 @@ public class controladorpaginas {
     @GetMapping("/catalogo")
     public String mostrarCatalogo(){
         return "catalogo";
+    }
+
+    @GetMapping("/gestionusuario")
+    public String mostrarGestionUsuario(){
+        return "gestionusuario";
+    }
+
+    @GetMapping("/gestionlibros")
+    public String mostrarGestionLibros(){
+        return "gestionlibros";
+    }
+
+    @GetMapping("/gestionprestamos")
+    public String mostrarGestionPrestamos(){
+        return "gestionprestamos";
+    }
+
+
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password) {
+
+        // Ejemplo simple: si el usuario es "admin"
+        if (email.equalsIgnoreCase("admin@admin.com") && password.equals("admin")) {
+            return "redirect:/gestionusuario";
+        }
+
+        // Cualquier otro usuario va a principal
+        return "redirect:/principal";
     }
 
 
